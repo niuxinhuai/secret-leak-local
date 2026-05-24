@@ -22,23 +22,31 @@ npm link
 secret-leak-local --help
 ```
 
-### Usage
+### Features
 
-Scan a path.
+- Scans paths or staged files.
+- Detects private keys, AWS keys, GitHub tokens, Slack tokens, JWTs, and env-style secrets.
+- Masks detected values in output.
+- Supports allow patterns through .secretignore and exits 2 when findings exist.
+
+### Usage
 
 ```bash
 secret-leak-local .
+secret-leak-local --staged
 secret-leak-local src config --json
+secret-leak-local . --allow-file .secretignore
 ```
 
-### Status
+### Automation
 
-This is an MVP designed to be useful immediately and easy to extend. It has no runtime dependencies and targets Node.js 18+.
+Use `secret-leak-local --staged` in pre-commit hooks and full path scans in CI.
 
 ### Test
 
 ```bash
 npm test
+npm --cache /tmp/npm-cache pack --dry-run .
 ```
 
 ## 中文
@@ -57,21 +65,29 @@ npm link
 secret-leak-local --help
 ```
 
-### 用法
+### 功能
 
-扫描一个或多个路径。
+- 支持扫描路径或 staged 文件。
+- 识别私钥、AWS key、GitHub token、Slack token、JWT 和 env 风格 secret。
+- 输出中会遮蔽敏感值。
+- 支持 .secretignore 允许列表；发现风险时退出码为 2。
+
+### 用法
 
 ```bash
 secret-leak-local .
+secret-leak-local --staged
 secret-leak-local src config --json
+secret-leak-local . --allow-file .secretignore
 ```
 
-### 当前状态
+### 自动化
 
-这是一个可以直接使用的 MVP，重点是小、清晰、容易二次开发。运行时无第三方依赖，要求 Node.js 18+。
+Use `secret-leak-local --staged` in pre-commit hooks and full path scans in CI.
 
 ### 测试
 
 ```bash
 npm test
+npm --cache /tmp/npm-cache pack --dry-run .
 ```
