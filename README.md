@@ -27,7 +27,8 @@ secret-leak-local --help
 - Scans paths or staged files.
 - Detects private keys, AWS keys, GitHub tokens, Slack tokens, JWTs, and env-style secrets.
 - Masks detected values in output.
-- Supports allow patterns through .secretignore and exits 2 when findings exist.
+- Supports allow patterns through `.secretignore`, JSON config, entropy detection, SARIF output, and baselines.
+- Exits 2 when findings exist.
 
 ### Usage
 
@@ -36,11 +37,13 @@ secret-leak-local .
 secret-leak-local --staged
 secret-leak-local src config --json
 secret-leak-local . --allow-file .secretignore
+secret-leak-local . --sarif > secret-leak-local.sarif
+secret-leak-local . --write-baseline .secrets.baseline
 ```
 
 ### Automation
 
-Use `secret-leak-local --staged` in pre-commit hooks and full path scans in CI.
+Use `secret-leak-local --staged` in pre-commit hooks and full path scans in CI. See `examples/github-action.yml` and `examples/secret-leak-local.json`.
 
 ### Test
 
@@ -70,7 +73,8 @@ secret-leak-local --help
 - 支持扫描路径或 staged 文件。
 - 识别私钥、AWS key、GitHub token、Slack token、JWT 和 env 风格 secret。
 - 输出中会遮蔽敏感值。
-- 支持 .secretignore 允许列表；发现风险时退出码为 2。
+- 支持 `.secretignore`、JSON 配置、熵检测、SARIF 输出和 baseline。
+- 发现风险时退出码为 2。
 
 ### 用法
 
