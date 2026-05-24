@@ -1,0 +1,36 @@
+{
+  "name": "secret-leak-local",
+  "version": "0.1.0",
+  "description": "Scan local files for common secret, token, private key, and .env leakage patterns before committing.",
+  "type": "module",
+  "bin": {
+    "secret-leak-local": "./src/cli.js"
+  },
+  "scripts": {
+    "test": "node test/run-tests.js"
+  },
+  "keywords": [
+    "cli",
+    "developer-tools",
+    "open-source",
+    "ai-workflow"
+  ],
+  "author": "niuxinhuai",
+  "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/niuxinhuai/secret-leak-local.git"
+  },
+  "bugs": {
+    "url": "https://github.com/niuxinhuai/secret-leak-local/issues"
+  },
+  "homepage": "https://github.com/niuxinhuai/secret-leak-local#readme",
+  "files": [
+    "src",
+    "README.md",
+    "LICENSE"
+  ],
+  "engines": {
+    "node": ">=18"
+  }
+}

@@ -1,0 +1,17 @@
+import assert from 'node:assert/strict';
+import { spawnSync } from 'node:child_process';
+import fs from 'node:fs';
+import os from 'node:os';
+import path from 'node:path';
+import { fileURLToPath } from 'node:url';
+const root = path.resolve(path.dirname(fileURLToPath(import.meta.url)), '..');
+const cli = path.join(root, 'src', 'cli.js');
+const tmp = fs.mkdtempSync(path.join(os.tmpdir(), 'secret-leak-local-'));
+fs.writeFileSync(path.join(tmp, '.env'), 'API_KEY=supersecretvalue\n');
+const run = spawnSync(process.execPath, [cli, tmp], { encoding: 'utf8' });
+assert.equal(run.status, 2);
+assert.match(run.stdout, /env-secret/);
+const clean = fs.mkdtempSync(path.join(os.tmpdir(), 'secret-leak-local-clean-'));
+const ok = spawnSync(process.execPath, [cli, clean], { encoding: 'utf8' });
+assert.equal(ok.status, 0);
+console.log('secret-leak-local tests passed');
